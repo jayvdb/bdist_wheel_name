@@ -24,4 +24,6 @@ def test_basic(dummy_dist, monkeypatch, tmpdir):
     output = subprocess.check_output(
         [sys.executable, "setup.py", "-q", "bdist_wheel_name"]
     )
-    assert output.strip() == b'dummy_dist-1.0-py3-none-any'
+    assert output.strip().decode() == "dummy_dist-1.0-py{}-none-any".format(
+        sys.version_info[0]
+    )
